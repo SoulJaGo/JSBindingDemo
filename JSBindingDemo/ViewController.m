@@ -18,25 +18,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    JSContext *context = [[JSContext alloc] init];
-//    JSValue *reuslt = [context evaluateScript:@"1+2"];
-//    NSLog(@"1+2=%f",[reuslt toDouble]);
+//    JSContext *context = [[JSContext alloc] init];
+//    JSValue *result = [context evaluateScript:@"1+2"];
+//    NSLog(@"1+2=%f",[result toDouble]);
     
-//    [context evaluateScript:@"function sum(a,b){return a+b;}"];
+//    JSContext *context = [[JSContext alloc] init];
 //    JSValue *sum = context[@"sum"];
 //    JSValue *result = [sum callWithArguments:@[@1,@2]];
 //    NSLog(@"sum(1,2)=%f",[result toDouble]);
+
+//    JSContext *context = [[JSContext alloc] init];
+//    JSValue *intVar = [JSValue valueWithInt32:231 inContext:context];
+//    context[@"bar"] = intVar;
+//    [context evaluateScript:@"bar++"];
+//    JSContext *context = [[JSContext alloc] init];
+//    context.exceptionHandler = ^(JSContext *context,JSValue *exception){
+//        NSLog(@"%@",exception);
+//    };
     
-//    [context evaluateScript:@"var bar = 1;"];
-//    JSValue *bar = context[@"bar"];
-//    NSLog(@"%f",[bar toDouble]);
-    
-    context[@"sum"] = ^(int a, int b){
-        JSContext *ctx = [JSContext currentContext];
-        return a+b;
+    JSContext *context = [[JSContext alloc] init];
+    context[@"sum"] = ^(int a,int b){
+        return a + b;
     };
     JSValue *result = [context evaluateScript:@"sum(1,2)"];
-    NSLog(@"1+2=%f",[result toDouble]);
+    NSLog(@"sum(1,2)=%f",[result toDouble]);
 }
 
 - (void)didReceiveMemoryWarning {
